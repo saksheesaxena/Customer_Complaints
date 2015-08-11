@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Theme_color">#990000</color>
+    <color name="Theme_color">#CC0011</color>
+    <color name="Theme_color_dark">#991122</color>
+    <color name="colorWhite">#ffffff</color>
+    <!-- Toolbar settings -->
+    <color name="colorToolbarTitle">#FFFFFF</color>
+    <color name="colorToolbarNavigationIcon">#ffffff</color>
+    <color name="colorToolbarBorder">#00563D</color>
+   
 </resources>

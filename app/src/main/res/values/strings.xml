@@ -5,4 +5,23 @@
     <string name="action_settings">Settings</string>
     <string name="app">Jan Seva</string>
     <string name="splash_app_desc"> Welcome to JanSeva \n Register your complaints here!</string>
+
+    <string-array name="departments">
+        <item>market department </item>
+        <item>water supply</item>
+        <item>Employees Future fund</item>
+        <item>Mechanic</item>
+        <item>Pensions Branch</item>
+        <item>Libel</item>
+        <item>Light </item>
+        <item>Revenue</item>
+        <item> Installation</item>
+        <item>Health</item>
+        <item>General Administration</item>
+        <item>Education</item>
+        <item>Garden</item>
+        <item>Plan</item>
+        <item>Accountant</item>
+
+    </string-array>
 </resources>
