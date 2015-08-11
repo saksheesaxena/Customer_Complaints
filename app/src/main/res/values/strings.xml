@@ -6,6 +6,11 @@
     <string name="app">Jan Seva</string>
     <string name="splash_app_desc"> Welcome to JanSeva \n Register your complaints here!</string>
 
+    <!-- main activity settings-->
+    <string name="Choose_Category">Choose a Category</string>
+
+    <!-- second activity settings-->
+    <string name="Choose_department">Choose a Department</string>
     <string-array name="departments">
         <item>market department </item>
         <item>water supply</item>
