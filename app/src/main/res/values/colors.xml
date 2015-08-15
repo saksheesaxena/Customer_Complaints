@@ -6,6 +6,13 @@
     <!-- Toolbar settings -->
     <color name="colorToolbarTitle">#FFFFFF</color>
     <color name="colorToolbarNavigationIcon">#ffffff</color>
-    <color name="colorToolbarBorder">#00563D</color>
-   
+    <color name="colorToolbarBorder">#ff560003</color>
+
+    <!-- Text Colors. -->
+    <color name="colorPrimaryText">#ff471920</color>
+    <color name="colorSecondaryText">#8c989e</color>
+    <color name="colorHeading">#ff444444</color>
+    <color name="colorText">#75858f</color>
+    <color name="colorToolbar">#666</color>
+
 </resources>

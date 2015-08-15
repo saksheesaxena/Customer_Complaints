@@ -1,63 +1,71 @@
 package com.example.admin.customer_complaints;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.hardware.Camera;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class SecondActivity extends BaseActivity {
-    TextView tv;
-    TextView tv1;
-    TextView tv2;
-    TextView tv3;
+public abstract class BaseActivity extends AppCompatActivity
 
-    Button b4;
-    Button b5;
-    String[] complaint_department;
-    Spinner spinner;
+{
+
+
     private Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_main);
+        setContentView(getLayoutResource());
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         }
+    }
+
+    protected abstract int getLayoutResource();
+
+    protected void setActionBarIcon(int iconRes) {
+        toolbar.setNavigationIcon(iconRes);
+    }
+
+    public void setActionBarTitle(int title) {
+        getSupportActionBar().setTitle(title);
+    }
 
 
-        b4 = (Button) findViewById(R.id.button4);
-        b5 = (Button) findViewById(R.id.button5);
-        spinner = (Spinner)findViewById(R.id.department_spinner);
-        complaint_department = getResources().getStringArray(R.array.departments);
-       b4.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-                startActivity(new Intent(SecondActivity.this, MainActivity.class));
-            }
-       });
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_second;
-    }
-
-  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_second, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    } */
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -74,3 +82,14 @@ public class SecondActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
+
+
+
+
+
+
+
+

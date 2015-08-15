@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.admin.customer_complaints.MainActivity;
-import com.example.admin.customer_complaints.R;
-
 /**
  * Created by admin on 05-Aug-15.
  */
