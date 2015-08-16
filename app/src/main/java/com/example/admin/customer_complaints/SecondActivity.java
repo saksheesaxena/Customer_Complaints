@@ -28,6 +28,10 @@ public class SecondActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        tv = (TextView)findViewById(R.id.textView);
+        tv1 = (TextView)findViewById(R.id.textView1);
+        tv2 = (TextView)findViewById(R.id.textView2);
+        tv3 = (TextView)findViewById(R.id.textView3);
         b4 = (Button) findViewById(R.id.button4);
         b5 = (Button) findViewById(R.id.button5);
         spinner = (Spinner)findViewById(R.id.department_spinner);

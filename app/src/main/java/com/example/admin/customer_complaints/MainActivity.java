@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
+    public Toolbar toolbar;
+
     Button b1;
     Button b2;
     Button b3;
@@ -36,6 +39,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar= (Toolbar)findViewById(R.id.toolbar);
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        }
 
         b1 = (Button) findViewById(R.id.button);
         b2 = (Button) findViewById(R.id.button1);
