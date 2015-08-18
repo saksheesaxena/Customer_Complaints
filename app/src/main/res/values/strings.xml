@@ -31,4 +31,16 @@
     </string-array>
     <!-- Toolbar Strings -->
     <string name="toolbar_text_woPhoto">Complaint Section</string>
+
+    <!-- Navigation Bar Items -->
+    <string-array name="drawer_items">
+        <item>Language</item>
+        <item>My Complaints</item>
+    </string-array>
+
+    <string-array name="nav_drawer_images">
+
+        <item>@mipmap/ic_lang</item>
+        <item>@mipmap/ic_comp</item>
+    </string-array>
 </resources>
