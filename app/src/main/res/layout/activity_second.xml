@@ -1,3 +1,7 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,36 +13,51 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.admin.customer_complaints.SecondActivity"
-    android:weightSum="1">
-    <ScrollView
-        android:id="@+id/ScrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:context="com.example.admin.customer_complaints.SecondActivity">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="16dp"
-
-        android:weightSum="1"
-        android:orientation="vertical">
-    <TableRow>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dip"
-        android:textColor="#141414"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.07"
-        android:background="#ffbaa9"/>
+        android:layout_gravity="center_horizontal" />
     <EditText
-        android:hint="Enter your name"
-        android:textColor="#141414" />
-    </TableRow>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your name"/>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_gravity="center_horizontal" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your phone number"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your email id"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_vertical" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the description"/>
 
     <Spinner
         android:layout_width="match_parent"
@@ -46,14 +65,13 @@
         android:spinnerMode="dialog"
         android:entries="@array/departments"
         android:id="@+id/department_spinner"
-        android:layout_marginTop="360dp"/>
+        android:layout_marginTop="10dp"/>
 
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_weight="7.80">
+       android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,8 +96,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         />
-
 </LinearLayout>
-    </TableLayout>
+</LinearLayout>
     </ScrollView>
-</LinearLayout>
