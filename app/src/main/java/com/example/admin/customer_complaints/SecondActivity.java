@@ -3,6 +3,7 @@ package com.example.admin.customer_complaints;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
-public class SecondActivity extends ActionBarActivity {
+public class SecondActivity extends BaseActivity {
     TextView tv;
     TextView tv1;
     TextView tv2;
@@ -22,12 +23,19 @@ public class SecondActivity extends ActionBarActivity {
     Button b5;
     String[] complaint_department;
     Spinner spinner;
+    private Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+
+                        if (toolbar != null) {
+                        setSupportActionBar(toolbar);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                   }
         b4 = (Button) findViewById(R.id.button4);
         b5 = (Button) findViewById(R.id.button5);
         spinner = (Spinner)findViewById(R.id.department_spinner);
@@ -45,7 +53,10 @@ public class SecondActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_second, menu);
         return true;
     } */
-
+    @Override
+       protected int getLayoutResource() {
+        return R.layout.activity_second;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

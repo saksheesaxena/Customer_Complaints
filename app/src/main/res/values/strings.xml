@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Customer_Complaints</string>
+    <string name="app_name">Jan Seva</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -29,4 +29,6 @@
         <item>Accountant</item>
 
     </string-array>
+    <!-- Toolbar Strings -->
+    <string name="toolbar_text_woPhoto">Complaint Section</string>
 </resources>
