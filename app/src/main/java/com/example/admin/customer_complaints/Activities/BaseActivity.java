@@ -1,24 +1,11 @@
-package com.example.admin.customer_complaints;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
+package com.example.admin.customer_complaints.Activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.example.admin.customer_complaints.R;
 
 /**
  * Created by admin on 18-Aug-15.
@@ -31,7 +18,7 @@ import java.util.List;
                 @Override
            protected void onCreate(Bundle savedInstanceState) {
                     super.onCreate(savedInstanceState);
-                    setContentView(R.layout.activity_main);
+                    setContentView(R.layout.activity_choice_selection);
                     setContentView(getLayoutResource());
                     toolbar = (Toolbar) findViewById(R.id.tool_bar);
 

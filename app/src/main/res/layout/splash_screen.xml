@@ -42,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/splash_app_desc"
-        android:textColor="@color/Theme_color"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:gravity="center" />
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">जन सेवा</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="app">जन सेवा</string>
+    <string name="splash_app_desc">जन सेवा में आपका स्वागत है \n अपनी शिकायत यहां दर्ज करे</string>
+
+    <!-- main activity settings-->
+    <string name="Choose_Category">कोई श्रेणी चुनें</string>
+
+    <!-- second activity settings-->
+    <string name="Choose_department">विभाग का चयन करे</string>
+
+    <string-array name="departments">
+        <item>बाजार विभाग </item>
+        <item>जलापूर्ति</item>
+        <item>कर्मचारी भविष्य निधि</item>
+        <item>मैकेनिक</item>
+        <item>पेंशन शाखा</item>
+        <item>परिवाद</item>
+        <item>प्रकाश </item>
+        <item>राजस्व</item>
+        <item> स्थापना</item>
+        <item>स्वास्थ्य</item>
+        <item>सामान्य प्रशासन</item>
+        <item>शिक्षा</item>
+        <item>उद्यान</item>
+        <item>योजना</item>
+        <item>मुनीम</item>
+
+    </string-array>
+
+    <!-- Toolbar Strings -->
+    <string name="toolbar_text_woPhoto">शिकायत दर्ज करे</string>
+
+
+    <!-- Navigation Bar Items -->
+    <string-array name="drawer_items">
+        <item>Language</item>
+        <item>My Complaints</item>
+    </string-array>
+
+    <string-array name="nav_drawer_images">
+
+        <item>@mipmap/ic_lang</item>
+        <item>@mipmap/ic_comp</item>
+    </string-array>
+
+    <!-- Language Selector -->
+    <string-array name="app_language">
+        <item>हिंदी</item>
+        <item>अंग्रेजी</item>
+    </string-array>
+
+    <!-- Home Strings -->
+    <string name="complaint">शिकायत दर्ज </string>
+    <string name="track">Track Complaint</string>
+    <string name="language">भाषा बदलें</string>
+    <string name="about">About</string>
+</resources>

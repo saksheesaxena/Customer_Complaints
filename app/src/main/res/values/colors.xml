@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Theme_color">#CC0011</color>
-    <color name="Theme_color_dark">#991122</color>
+
+    <color name="colorPrimary">#29b6f6</color>
+    <color name="colorPrimaryDark">#2196f3</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorAccent">#546e7a</color>
     <!-- Toolbar settings -->
     <color name="colorToolbarTitle">#FFFFFF</color>
     <color name="colorToolbarNavigationIcon">#ffffff</color>

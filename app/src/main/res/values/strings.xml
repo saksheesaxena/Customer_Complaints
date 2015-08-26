@@ -43,4 +43,24 @@
         <item>@mipmap/ic_lang</item>
         <item>@mipmap/ic_comp</item>
     </string-array>
+    <string name="language_lang">Language</string>
+        <!-- Language Selector -->
+    <string-array name="app_language">
+        <item>Hindi</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="app_language_alias">
+        <item>hi</item>
+        <item>en</item>
+    </string-array>
+
+    <!-- Home Strings -->
+    <string name="complaint">Register Complaint</string>
+    <string name="track">Track Complaint</string>
+    <string name="language">Change Language</string>
+    <string name="about">About</string>
+
+    <!-- Choice Selection Activity -->
+    <string name="Register_with_photo">Register complaint with photo</string>
+    <string name="Register_wo_photo">Register complaint without photo</string>
 </resources>

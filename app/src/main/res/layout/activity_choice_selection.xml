@@ -13,8 +13,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register complaint with photo"
-        android:id="@+id/button"
+        android:text="@string/Register_with_photo"
+        android:id="@+id/button1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
@@ -22,25 +22,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register complaint without photo"
-        android:id="@+id/button1"
-        android:layout_marginTop="@dimen/keyLine1" />
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Track your complaint"
+        android:text="@string/Register_wo_photo"
         android:id="@+id/button2"
         android:layout_marginTop="@dimen/keyLine1" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View all the complaints"
-        android:id="@+id/button3"
-        android:layout_marginTop="@dimen/keyLine1"
-       />
+
 
 
 </LinearLayout>
