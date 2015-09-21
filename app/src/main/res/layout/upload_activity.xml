@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/icon2"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="imagedescription" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="U p l o a d"
+        android:id="@+id/upload"
+        android:layout_gravity="bottom"
+        android:onClick=""
+        android:textSize="20dp"
+        android:background="@color/colorPrimary" />
+
+    <EditText
+
+        android:id="@+id/caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write caption"
+        android:singleLine="true"
+        android:layout_toRightOf="@id/upload"
+        android:layout_alignParentBottom="true" />
+
+</LinearLayout>
