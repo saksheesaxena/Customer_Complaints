@@ -63,4 +63,18 @@
     <!-- Choice Selection Activity -->
     <string name="Register_with_photo">Register complaint with photo</string>
     <string name="Register_wo_photo">Register complaint without photo</string>
+
+    <!-- SignUp Activity -->
+    <string name="signup_name">Name</string>
+    <string name="signup_address">Address</string>
+    <string name="signup_mobile">Moblie Number</string>
+    <string name="signup_mail">E-mail </string>
+    <string name="signup_password">Password</string>
+    <string name="signup_gender">Gender</string>
+    <string name="signup_ulb">ULB</string>
+    <string-array name="signup_gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
 </resources>

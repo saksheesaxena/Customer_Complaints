@@ -38,6 +38,7 @@ public class geoDegree {
         }
     };
 
+
     private Float convertToDegree(String stringDMS){
         Float result = null;
         String[] DMS = stringDMS.split(",", 3);

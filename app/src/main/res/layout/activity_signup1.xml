@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/keyLine1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:gravity="center"
+        android:text="Sign Up"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryText"
+        />
+    <EditText
+        android:id="@+id/signup_name"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_name" />
+    <EditText
+        android:id="@+id/signup_pwd"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_password"
+        android:inputType="numberPassword"/>
+
+    <EditText
+        android:id="@+id/signup_address"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_address" />
+
+    <EditText
+        android:id="@+id/signup_mob"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_mobile" />
+    <EditText
+        android:id="@+id/signup_gender"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_gender" />
+    <EditText
+        android:id="@+id/signup_email"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_mail"
+        android:inputType="textEmailAddress"/>
+    <Button
+        android:id="@+id/signup_register_btn"
+        android:layout_marginTop="@dimen/keyLine2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Register"/>
+    <TextView
+        android:id="@+id/sign_up_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyLine2"
+        android:layout_marginBottom="@dimen/keyLine2"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Do not have an account?" />
+</LinearLayout>
