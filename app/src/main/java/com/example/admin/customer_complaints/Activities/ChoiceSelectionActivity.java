@@ -25,7 +25,7 @@ public class ChoiceSelectionActivity extends BaseActivity {
     Button b1;
     Button b2;
     Button b3;
-    Button button_location;
+   // Button button_location;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri imageUri;
     private Uri fileUri;
