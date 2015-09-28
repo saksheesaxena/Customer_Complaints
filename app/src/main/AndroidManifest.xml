@@ -42,13 +42,12 @@
 
         <activity android:label="Change Language" android:name=".Activities.LanguageSelectorActivity">
         </activity>
-        <activity android:label="Location" android:name=".Activities.ExIfActivity">
 
+        <activity android:label="Sign up" android:name=".Activities.SignUpActivity"></activity>
+        <activity android:label="Location" android:name=".Activities.ExIfActivity"></activity>
 
+        <activity android:label="Upload photo" android:name=".Activities.UploadActivity"></activity>
 
-
-
-        </activity>
 
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

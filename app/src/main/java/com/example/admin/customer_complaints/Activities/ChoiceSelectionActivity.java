@@ -76,6 +76,12 @@ public class ChoiceSelectionActivity extends BaseActivity {
 
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(ChoiceSelectionActivity.this, UploadActivity.class));
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(ChoiceSelectionActivity.this, ComplaintDescActivity.class));
             }
         });
