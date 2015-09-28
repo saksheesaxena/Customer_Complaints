@@ -3,6 +3,7 @@ package com.example.admin.customer_complaints.Activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -58,7 +59,9 @@ public class SignUpActivity extends Activity {
                 if (name.isEmpty() || password.isEmpty() || address.isEmpty() || mobile.isEmpty() || gender.isEmpty() || email.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "One or more fields are empty", Toast.LENGTH_SHORT).show();
                 }
+                startActivity(new Intent(SignUpActivity.this,HomeActivity.class));
             }
+
         });
     }
         //Async task to check whether Internet Connection is working

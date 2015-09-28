@@ -20,6 +20,7 @@ public class ComplaintDescActivity extends BaseActivity {
 
     Button b4;
     Button b5;
+    Button button_location;
     String[] complaint_department;
     Spinner spinner;
     private Toolbar toolbar;
@@ -37,6 +38,7 @@ public class ComplaintDescActivity extends BaseActivity {
                    }
         b4 = (Button) findViewById(R.id.button4);
         b5 = (Button) findViewById(R.id.button5);
+        button_location = (Button)findViewById(R.id.button_location);
         spinner = (Spinner)findViewById(R.id.department_spinner);
         complaint_department = getResources().getStringArray(R.array.departments);
        b4.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +46,15 @@ public class ComplaintDescActivity extends BaseActivity {
                 startActivity(new Intent(ComplaintDescActivity.this, HomeActivity.class));
             }
        });
+
+        button_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ComplaintDescActivity.this,MapActivity.class));
+            }
+        });
+
+
     }
 
   /*  @Override

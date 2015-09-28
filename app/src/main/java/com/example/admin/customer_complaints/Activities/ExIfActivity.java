@@ -1,5 +1,6 @@
 package com.example.admin.customer_complaints.Activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
@@ -21,26 +22,29 @@ import java.util.Locale;
  */
 public class ExIfActivity extends BaseActivity {
 
-    String imagefile = "/storage/extSdCard/DCIM/Camera/20150821_234409.jpg";
+
+    String  imagefile = "/storage/extSdCard/DCIM/Camera/20150821_234409.jpg";
     ImageView image;
     TextView ExIf;
     TextView addr;
-    Geocoder geocoder;
-    String str_latitude;
-    String str_latitude_degree;
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exif);
+
+
+
         image = (ImageView) findViewById(R.id.image);
         ExIf = (TextView) findViewById(R.id.exif);
         addr = (TextView) findViewById(R.id.address);
         Bitmap bm = BitmapFactory.decodeFile(imagefile);
         image.setImageBitmap(bm);
-
         ExIf.setText(ReadExif(imagefile));
         getMyLocationAddress();
+
+
 
     }
 
@@ -50,18 +54,20 @@ public class ExIfActivity extends BaseActivity {
             ExifInterface exifInterface = new ExifInterface(file);
 
             exif += "\n TAG_GPS_LATITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-            String attrLATITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+            String attrLATITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE) ;
             exif += "\n TAG_GPS_LATITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
             String attrLATITUDE_REF  = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
             exif += "\n TAG_GPS_LONGITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
             String attrLONGITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
             exif += "\n TAG_GPS_LONGITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
             String attrLONGITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
-
-
-
-
-
+            geoDegree gD = new geoDegree(exifInterface);
+            gD.convertToDegree(attrLATITUDE);
+            exif += "\n TAG_Latitude_decimal " + gD.convertToDegree(attrLATITUDE);
+            latitude = gD.convertToDegree(attrLATITUDE);
+            gD.convertToDegree(attrLONGITUDE);
+            exif+= "\n Tag_Longitude_decimal"+ gD.convertToDegree(attrLONGITUDE);
+            longitude = gD.convertToDegree(attrLONGITUDE);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -78,44 +84,36 @@ public class ExIfActivity extends BaseActivity {
 
     }
 
+
     public void getMyLocationAddress() {
 
-        Geocoder geocoder= new Geocoder(this, Locale.ENGLISH);
+        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
 
         try {
 
             //Place your latitude and longitude
-            List<Address> addresses = geocoder.getFromLocation(23.183332,77.410835, 1);
+            List<Address> addresses = geocoder.getFromLocation(latitude,longitude, 1);
 
-            if(addresses != null) {
+            if (addresses != null) {
 
                 Address fetchedAddress = addresses.get(0);
                 StringBuilder strAddress = new StringBuilder();
 
-                for(int i=0; i<fetchedAddress.getMaxAddressLineIndex(); i++) {
+                for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
                     strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
                 }
 
                 addr.setText("I am at: " + strAddress.toString());
 
-            }
-
-            else
+            } else
                 addr.setText("No location found..!");
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Could not get address..!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Could not get address..!", Toast.LENGTH_LONG).show();
         }
-
-
-        }
-
-
-
-
+    }
 
     @Override
     protected int getLayoutResource() {

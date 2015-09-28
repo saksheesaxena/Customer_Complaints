@@ -9,6 +9,11 @@
     <include android:id="@+id/tool_bar"
              layout="@layout/tool_bar"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/keyLine1">
 
     <Button
         android:layout_width="match_parent"
@@ -18,14 +23,17 @@
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="60dp"
+        android:textColor="@color/colorWhite"
+       />
 
     <Button android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/button2"
         android:background="@color/colorPrimary"
         android:layout_marginTop="50dp"
-        android:text="Upload photo and register complaint"/>
+        android:text="Upload photo and register complaint"
+        android:textColor="@color/colorWhite"/>
 
     <Button
         android:layout_width="match_parent"
@@ -33,7 +41,9 @@
         android:text="@string/Register_wo_photo"
         android:background="@color/colorPrimary"
         android:id="@+id/button3"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:textColor="@color/colorWhite"/>
+    </LinearLayout>
 
 
 
