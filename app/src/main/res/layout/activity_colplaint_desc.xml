@@ -103,4 +103,11 @@
         android:id="@+id/button_location"
         android:text="Get Location"
         />
+<ImageView android:layout_height="150dp"
+    android:layout_width="150dp"
+    android:id="@+id/image_uploaded"
+    android:background="@color/colorAccent"
+
+
+        />
 </LinearLayout>

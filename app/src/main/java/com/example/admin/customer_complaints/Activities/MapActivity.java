@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.admin.customer_complaints.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -37,6 +38,8 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     GoogleMap googleMap;
     boolean markerClicked;
     TextView tvLocInfo;
+    Marker marker;
+    String present_location;
 
 
 
@@ -99,7 +102,14 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                 for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
                     strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
                 }
+                present_location = strAddress.toString();
 
+                new MaterialDialog.Builder(this)
+                        .title(R.string.Confirm)
+                        .content(R.string.Content)
+                        .positiveText(R.string.Agree)
+                        .negativeText(R.string.Disagree)
+                        .show();
                 locationTv.setText("I am at: " + strAddress.toString());
 
             } else
@@ -153,11 +163,14 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
 
     @Override
     public void onMapLongClick(LatLng point) {
+        if (marker != null) {
+            marker.remove();
+        }
       tvLocInfo.setText("New marker added@" + point.toString());
-        googleMap.addMarker(new MarkerOptions()
+        marker = googleMap.addMarker(new MarkerOptions()
                 .position(point)
-                .draggable(true));
-
+                .draggable(true)
+                .visible(true));
         markerClicked = false;
     }
 

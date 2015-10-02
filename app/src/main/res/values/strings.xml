@@ -77,4 +77,11 @@
         <item>Female</item>
     </string-array>
 
+    <!-- Map Activity -->
+    <string name="Confirm">Confirm Location</string>
+    <string name="Content">Your present location is. Do you want to change location or continue with this?</string>
+    <string name="Agree">Continue</string>
+    <string name="Disagree">Change Location</string>
+
+
 </resources>
