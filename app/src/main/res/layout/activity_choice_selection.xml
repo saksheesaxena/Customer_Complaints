@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Take photo and register the complaint"
         android:id="@+id/button1"
-        android:background="@color/colorPrimary"
+        android:background="#3F51B5"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
@@ -30,7 +30,7 @@
     <Button android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/button2"
-        android:background="@color/colorPrimary"
+        android:background="#3F51B5"
         android:layout_marginTop="50dp"
         android:text="Upload photo and register complaint"
         android:textColor="@color/colorWhite"/>
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Register_wo_photo"
-        android:background="@color/colorPrimary"
+        android:background="#3F51B5"
         android:id="@+id/button3"
         android:layout_marginTop="50dp"
         android:textColor="@color/colorWhite"/>

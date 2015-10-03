@@ -48,6 +48,7 @@
 
         <activity android:label="Upload photo" android:name=".Activities.UploadActivity"></activity>
         <activity android:label="Map" android:name=".Activities.MapActivity"/>
+        <activity android:label="Personal details" android:name=".Activities.PersonalDetailsActivity"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

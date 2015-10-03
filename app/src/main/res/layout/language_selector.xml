@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Change Language"
+        android:background="#3F51B5"
         android:id="@+id/Language_button"
         android:layout_marginTop="@dimen/keyLine5" />
 

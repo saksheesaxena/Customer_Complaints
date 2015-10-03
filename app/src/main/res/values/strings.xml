@@ -12,6 +12,7 @@
     <!-- second activity settings-->
     <string name="Choose_department">Choose a Department</string>
     <string-array name="departments">
+        <item>Departments</item>
         <item>market department </item>
         <item>water supply</item>
         <item>Employees Future fund</item>
