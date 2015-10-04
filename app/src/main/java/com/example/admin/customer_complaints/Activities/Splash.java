@@ -24,7 +24,9 @@ public class Splash extends Activity {
         register_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(Splash.this,HomeActivity.class));
+
+
+               startActivity(new Intent(Splash.this,SignUpActivity.class));
             }
         });
 

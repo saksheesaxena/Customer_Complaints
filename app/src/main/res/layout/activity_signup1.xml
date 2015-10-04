@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/keyLine1">
+  >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/keyLine1"
+    android:background="@color/colorWhite">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,13 +28,11 @@
         android:layout_height="wrap_content"
         android:hint="@string/signup_name" />
     <EditText
-        android:id="@+id/signup_pwd"
+        android:id="@+id/signup_mob"
         android:layout_marginTop="@dimen/keyLine1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/signup_password"
-        android:inputType="numberPassword"/>
-
+        android:hint="@string/signup_mobile" />
     <EditText
         android:id="@+id/signup_address"
         android:layout_marginTop="@dimen/keyLine1"
@@ -36,18 +40,50 @@
         android:layout_height="wrap_content"
         android:hint="@string/signup_address" />
 
-    <EditText
-        android:id="@+id/signup_mob"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select District"
+        android:id="@+id/textView4" />
+
+    <Spinner
+        android:id="@+id/signup_district"
         android:layout_marginTop="@dimen/keyLine1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/signup_mobile" />
-    <EditText
+        android:hint="@string/signup_ulb"
+        android:spinnerMode="dialog"
+       android:prompt="@string/District"
+        android:entries="@array/district_names"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select ULB"
+        android:id="@+id/textView6" />
+
+    <Spinner
+        android:id="@+id/signup_ulb"
+        android:layout_marginTop="@dimen/keyLine1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_ulb"
+        android:spinnerMode="dialog"
+        android:prompt="@string/signup_ulb"
+        />
+
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/signup_gender"
-        android:layout_marginTop="@dimen/keyLine1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/signup_gender" />
+        android:layout_marginTop="@dimen/keyLine1"
+        android:background="@color/colorWhite"
+        android:hint="@string/signup_gender"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:paddingLeft="16dp"
+        android:gravity="start|center_vertical" />
     <EditText
         android:id="@+id/signup_email"
         android:layout_marginTop="@dimen/keyLine1"
@@ -55,6 +91,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/signup_mail"
         android:inputType="textEmailAddress"/>
+
     <Button
         android:id="@+id/signup_register_btn"
         android:layout_marginTop="@dimen/keyLine2"
@@ -62,13 +99,7 @@
         android:layout_height="wrap_content"
         android:background="#3F51B5"
         android:text="Register"/>
-    <TextView
-        android:id="@+id/sign_up_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/keyLine2"
-        android:layout_marginBottom="@dimen/keyLine2"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Do not have an account?" />
+
 </LinearLayout>
+
+</ScrollView>

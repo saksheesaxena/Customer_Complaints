@@ -8,9 +8,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -27,9 +31,14 @@ import java.net.URL;
 public class SignUpActivity extends Activity {
 
 
-    EditText inputName, inputPassword,inputAddress, inputMobile,inputGender, inputEmail ;
+    EditText inputName, inputAddress, inputMobile, inputEmail;
+    AppCompatButton inputGender;
+    Spinner inputUlb ,inputDistrict;
     Button registerButton;
-    String name,password,address,mobile,gender,email;
+    String name, ulb, address, mobile, gender, email;
+
+    public String[] district_names;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,32 +48,96 @@ public class SignUpActivity extends Activity {
 
         // Defining Layout items
         inputName = (EditText) findViewById(R.id.signup_name);
-        inputPassword = (EditText) findViewById(R.id.signup_pwd);
         inputAddress = (EditText) findViewById(R.id.signup_address);
         inputMobile = (EditText) findViewById(R.id.signup_mob);
-        inputGender = (EditText) findViewById(R.id.signup_gender);
+        inputGender = (AppCompatButton) findViewById(R.id.signup_gender);
         inputEmail = (EditText) findViewById(R.id.signup_email);
+        inputDistrict = (Spinner) findViewById(R.id.signup_district);
+        inputUlb = (Spinner) findViewById(R.id.signup_ulb);
+        String[] district_names = getResources().getStringArray(R.array.district_names);
         registerButton = (Button) findViewById(R.id.signup_register_btn);
         inputGender.setOnClickListener(new setGender());
+        parentSpinner();
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+
+
+    registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = inputName.getText().toString();
-                password = inputPassword.getText().toString();
                 address = inputAddress.getText().toString();
                 mobile = inputMobile.getText().toString();
                 gender = inputGender.getText().toString();
                 email = inputEmail.getText().toString();
-                if (name.isEmpty() || password.isEmpty() || address.isEmpty() || mobile.isEmpty() || gender.isEmpty() || email.isEmpty()) {
+
+                if (name.isEmpty() || ulb.isEmpty() || address.isEmpty() || mobile.isEmpty() || gender.isEmpty() || email.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "One or more fields are empty", Toast.LENGTH_SHORT).show();
                 }
+
                 startActivity(new Intent(SignUpActivity.this,HomeActivity.class));
+
             }
 
         });
     }
-        //Async task to check whether Internet Connection is working
+
+    public void parentSpinner() {
+        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.district_names));
+        Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+       inputDistrict.setAdapter(Dadapter);
+
+        inputDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                                                          int selectedDistrict = position+1;
+
+
+
+                                                          inputUlb(selectedDistrict);
+                                                      }
+
+                                                      public void onNothingSelected(AdapterView<?> parent) {
+                                                      }
+                                                  }
+        );
+    }
+
+    private int getDistrictResourceId ( int districtnr ) {
+        int resId = R.array.district1Alirajpur;
+        switch ( districtnr )
+        {
+            case 1:
+                resId = R.array.district1Alirajpur;
+                break;
+            case 2:
+                resId = R.array.district2Anuppur;
+                break;
+
+            // please add the rest
+        }
+
+        return resId;
+    }
+
+    public void inputUlb ( int districtnr) {
+
+        int resId = getDistrictResourceId( districtnr );
+
+        ArrayAdapter<String> Cadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(resId));
+        Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        inputUlb.setAdapter(Cadapter);
+
+        inputUlb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                    }
+                                                    public void onNothingSelected(AdapterView<?> parent) {
+                                                    }
+                                                }
+        );
+    }
+
+
+    //Async task to check whether Internet Connection is working
 
         private class Netcheck extends AsyncTask
         {
@@ -113,7 +186,7 @@ public class SignUpActivity extends Activity {
 
         @Override
         public void onClick(View v) {
-            new MaterialDialog.Builder(getApplicationContext())
+            new MaterialDialog.Builder(SignUpActivity.this)
                     .title(R.string.signup_gender)
                     .items(R.array.signup_gender_array)
                     .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
@@ -129,6 +202,7 @@ public class SignUpActivity extends Activity {
 
 
 }
+
 
 
 

@@ -86,12 +86,12 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
                 Intent complaint = new Intent(HomeActivity.this, ChoiceSelectionActivity.class);
                 startActivity(complaint);
             }
-          /*  else if(home_text[position].equals(language)) {
+          else if(home_text[position].equals(language)) {
                 {
                     Intent language = new Intent(HomeActivity.this, LanguageSelectorActivity.class);
                     startActivity(language);
                 }
-            } */
+            }
             else if(home_text[position].equals(about))
             {
                 Intent about  = new Intent(HomeActivity.this, ExIfActivity.class);

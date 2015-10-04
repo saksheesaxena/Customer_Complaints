@@ -78,6 +78,81 @@
         <item>Female</item>
     </string-array>
 
+    <string name="District">Select District</string>
+    <string-array name="district_names">
+
+<item>	Alirajpur	</item>
+<item>	Anuppur	</item>
+<item>	Ashoknagar	</item>
+<item>	Balaghat	</item>
+<item>	Barwani	</item>
+<item>	Betul	</item>
+<item>	Bhind	</item>
+<item>	Bhopal	</item>
+<item>	Burhanpur	</item>
+<item>	Chhatarpur	</item>
+<item>	Chhindwara	</item>
+<item>	Damoh	</item>
+<item>	Damoh	</item>
+<item>	Datia	</item>
+<item>	Dewas	</item>
+<item>	Dhar	</item>
+<item>	Dindori	</item>
+<item>	Guna	</item>
+<item>	Gwalior	</item>
+<item>	Harda	</item>
+<item>	Hoshangabad	</item>
+<item>	Indore	</item>
+<item>	Jabalpur</item>
+<item>	Jhabua	</item>
+<item>	Katni	</item>
+<item>	Khandwa	</item>
+<item>	Khargone	</item>
+<item>	Mandla	</item>
+<item>	Mandsaur	</item>
+<item>	Morena	</item>
+<item>	Narsimhapur	</item>
+<item>	Neemuch	</item>
+<item>	Panna	</item>
+<item>	Raisen	</item>
+<item>	Rajgarh	</item>
+<item>	Ratlam	</item>
+<item>	Rewa	</item>
+<item>	Sagar	</item>
+<item>	Satna	</item>
+<item>	Sehore	</item>
+<item>	Seoni	</item>
+<item>	Shahdol	</item>
+<item>	Shajapur	</item>
+<item>	Sheopur	</item>
+<item>	Shivpuri	</item>
+<item>	Sidhi	</item>
+<item>	Singrauli	</item>
+<item>	Tikamgarh	</item>
+<item>	Ujjain	</item>
+<item>	Umaria	</item>
+<item>	Vidisha	</item></string-array>
+
+    <!-- Disrtict 1-Alirajpur -->
+    <string-array name="district1Alirajpur">
+
+
+   <item>Alirajpur</item><item>  Bhavra</item><item> Jobat</item> </string-array>
+    <!-- Disrtict 2-Anuppur -->
+    <string-array name="district2Anuppur">
+
+        <item>Amarkantak </item>
+        <item>   Anuppur</item>
+        <item> Bhavra</item>
+        <item>  Bijuri</item>
+        <item> Jaithari</item>
+        <item> Kotma</item>
+        <item>  Pasan</item>
+    </string-array>
+
+
+
+
     <!-- Map Activity -->
     <string name="Confirm">Confirm Location</string>
     <string name="Content">Your present location is. Do you want to change location or continue with this?</string>
