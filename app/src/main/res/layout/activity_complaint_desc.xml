@@ -38,6 +38,7 @@
         android:spinnerMode="dialog"
         android:entries="@array/departments"
         android:id="@+id/department_spinner"
+        android:background="@color/colorPrimary"
         android:layout_marginTop="10dp"/>
 
 

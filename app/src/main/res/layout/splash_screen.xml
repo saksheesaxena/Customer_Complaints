@@ -21,7 +21,7 @@
         android:id="@+id/splash_logo"
         android:src="@drawable/mp_logo"
         android:layout_centerHorizontal="true"
-        android:paddingTop="40dp"
+        android:paddingTop="10dp"
         />
     <TextView
         android:id="@+id/splash_welcome"
@@ -41,13 +41,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/splash_welcome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/splash_app_desc"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:gravity="center" />
-
+        <Spinner
+            android:id="@+id/city"
+            android:layout_marginTop="280dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/splash_city"
+            android:entries="@array/city_names"
+            android:spinnerMode="dialog"
+            android:background="@color/colorPrimary"
+            android:alpha="0.75"
+            android:textStyle="bold"
+            />
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
@@ -55,7 +66,7 @@
         android:layout_below="@+id/splash_app_description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/keyLine3"
+        android:layout_marginTop="90dp"
         android:textColor="@color/colorWhite"
         android:background="@color/colorPrimary"
         android:alpha="0.75"
@@ -68,6 +79,7 @@
         android:layout_marginTop="@dimen/keyLine2"
         android:textStyle="bold"
         android:gravity="center"
+        android:padding="10dp"
         android:text="Continue Without Registration"
         android:layout_below="@+id/register_button"
         android:textColor="#2f4f4f"

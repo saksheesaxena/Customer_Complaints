@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.admin.customer_complaints.R;
@@ -13,30 +14,29 @@ import com.example.admin.customer_complaints.R;
  * Created by Sakshee on 05-Aug-15.
  */
 public class Splash extends Activity {
+    Button register_choice;
+    TextView wo_register;
+    Spinner city;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        Button register_choice;
-        TextView wo_register;
-
+        city = (Spinner) findViewById(R.id.city);
         register_choice = (Button) findViewById(R.id.register_button);
         register_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                startActivity(new Intent(Splash.this,SignUpActivity.class));
             }
         });
-
 
         wo_register = (TextView) findViewById(R.id.continue_wo_register);
         wo_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Splash.this,HomeActivity.class));
-            }
+           }
         });
        /* Thread timerThread = new Thread() {
             public void run() {

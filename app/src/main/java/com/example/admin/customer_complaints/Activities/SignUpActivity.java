@@ -10,8 +10,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -52,12 +50,11 @@ public class SignUpActivity extends Activity {
         inputMobile = (EditText) findViewById(R.id.signup_mob);
         inputGender = (AppCompatButton) findViewById(R.id.signup_gender);
         inputEmail = (EditText) findViewById(R.id.signup_email);
-        inputDistrict = (Spinner) findViewById(R.id.signup_district);
         inputUlb = (Spinner) findViewById(R.id.signup_ulb);
         String[] district_names = getResources().getStringArray(R.array.district_names);
         registerButton = (Button) findViewById(R.id.signup_register_btn);
         inputGender.setOnClickListener(new setGender());
-        parentSpinner();
+     //   parentSpinner();
 
 
 
@@ -81,7 +78,7 @@ public class SignUpActivity extends Activity {
         });
     }
 
-    public void parentSpinner() {
+  /*  public void parentSpinner() {
         ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.district_names));
         Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
        inputDistrict.setAdapter(Dadapter);
@@ -134,7 +131,7 @@ public class SignUpActivity extends Activity {
                                                     }
                                                 }
         );
-    }
+    } */
 
 
     //Async task to check whether Internet Connection is working

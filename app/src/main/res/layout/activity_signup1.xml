@@ -43,23 +43,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select District"
-        android:id="@+id/textView4" />
-
-    <Spinner
-        android:id="@+id/signup_district"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_ulb"
-        android:spinnerMode="dialog"
-       android:prompt="@string/District"
-        android:entries="@array/district_names"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Select ULB"
         android:id="@+id/textView6" />
 
