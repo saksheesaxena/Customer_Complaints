@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -77,7 +78,12 @@ public class LanguageSelectorActivity extends BaseActivity {
         Intent refresh = new Intent(this , HomeActivity.class);
         startActivity(refresh);
     }
-
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_home).setVisible(false);
+        return true;
+    }
 
     @Override
     protected int getLayoutResource() {

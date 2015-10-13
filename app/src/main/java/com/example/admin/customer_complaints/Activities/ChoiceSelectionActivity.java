@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,7 +30,6 @@ public class ChoiceSelectionActivity extends BaseActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri imageUri;
     private Uri fileUri;
-    private Toolbar toolbar;
     private Intent intent;
     private ImageButton btn;
     private ImageView mImageView;
@@ -43,11 +43,7 @@ public class ChoiceSelectionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_selection);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+
 
         b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.button2);
@@ -106,6 +102,12 @@ public class ChoiceSelectionActivity extends BaseActivity {
         }
 
 
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_home).setVisible(false);
+        return true;
     }
 
 

@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.admin.customer_complaints.DatabaseHandler;
 import com.example.admin.customer_complaints.R;
 
 import java.io.IOException;
@@ -35,13 +36,14 @@ public class SignUpActivity extends Activity {
     Button registerButton;
     String name, ulb, address, mobile, gender, email;
 
-    public String[] district_names;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup1);
+
+        DatabaseHandler db = new DatabaseHandler(this);
 
 
         // Defining Layout items
@@ -51,7 +53,7 @@ public class SignUpActivity extends Activity {
         inputGender = (AppCompatButton) findViewById(R.id.signup_gender);
         inputEmail = (EditText) findViewById(R.id.signup_email);
         inputUlb = (Spinner) findViewById(R.id.signup_ulb);
-        String[] district_names = getResources().getStringArray(R.array.district_names);
+
         registerButton = (Button) findViewById(R.id.signup_register_btn);
         inputGender.setOnClickListener(new setGender());
      //   parentSpinner();
@@ -78,60 +80,6 @@ public class SignUpActivity extends Activity {
         });
     }
 
-  /*  public void parentSpinner() {
-        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.district_names));
-        Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-       inputDistrict.setAdapter(Dadapter);
-
-        inputDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                                                          int selectedDistrict = position+1;
-
-
-
-                                                          inputUlb(selectedDistrict);
-                                                      }
-
-                                                      public void onNothingSelected(AdapterView<?> parent) {
-                                                      }
-                                                  }
-        );
-    }
-
-    private int getDistrictResourceId ( int districtnr ) {
-        int resId = R.array.district1Alirajpur;
-        switch ( districtnr )
-        {
-            case 1:
-                resId = R.array.district1Alirajpur;
-                break;
-            case 2:
-                resId = R.array.district2Anuppur;
-                break;
-
-            // please add the rest
-        }
-
-        return resId;
-    }
-
-    public void inputUlb ( int districtnr) {
-
-        int resId = getDistrictResourceId( districtnr );
-
-        ArrayAdapter<String> Cadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(resId));
-        Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        inputUlb.setAdapter(Cadapter);
-
-        inputUlb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                    }
-                                                    public void onNothingSelected(AdapterView<?> parent) {
-                                                    }
-                                                }
-        );
-    } */
 
 
     //Async task to check whether Internet Connection is working
@@ -194,6 +142,7 @@ public class SignUpActivity extends Activity {
                     })
                     .positiveText("Select")
                     .show();
+
         }
     }
 

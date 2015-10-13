@@ -1,6 +1,7 @@
 package com.example.admin.customer_complaints.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import com.example.admin.customer_complaints.R;
  */
 public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.ViewHolder> {
 
+
     public String[] text;
+    private Toolbar toolbar;
     public int[] icons;
     OnItemClickListener mItemClickListener;
 
@@ -26,7 +29,9 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewAdapter.ViewHo
 
     @Override
     public HomeViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.final_home_view, parent, false);
+
         return new ViewHolder(view);
     }
     @Override

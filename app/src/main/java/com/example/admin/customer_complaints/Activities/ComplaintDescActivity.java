@@ -1,8 +1,10 @@
 package com.example.admin.customer_complaints.Activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,19 +22,15 @@ public class ComplaintDescActivity extends BaseActivity {
     Button button_location;
     String[] complaint_department;
     Spinner spinner;
-    private Toolbar toolbar;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint_desc);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
-                        if (toolbar != null) {
-                        setSupportActionBar(toolbar);
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                   }
+
         cancel = (Button) findViewById(R.id.button4);
         next = (Button) findViewById(R.id.next);
         button_location = (Button)findViewById(R.id.button_location);
@@ -82,5 +80,11 @@ public class ComplaintDescActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_home).setVisible(false);
+        return true;
     }
 }

@@ -1,14 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/buildings1"
     >
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/splash_city"
-        android:background="@drawable/buildings1"
-        android:layout_centerHorizontal="true"
-        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimary"
         />
     <TextView
         android:id="@+id/splash_app_description"
@@ -44,46 +39,37 @@
         android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/splash_app_desc"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:gravity="center" />
-        <Spinner
-            android:id="@+id/city"
-            android:layout_marginTop="280dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/splash_city"
-            android:entries="@array/city_names"
-            android:spinnerMode="dialog"
-            android:background="@color/colorPrimary"
-            android:alpha="0.75"
-            android:textStyle="bold"
-            />
+
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/splash_app_description"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="90dp"
+         android:layout_marginTop="67dp"
         android:textColor="@color/colorWhite"
         android:background="@color/colorPrimary"
         android:alpha="0.75"
         android:text="Register User"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/continue_wo_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/keyLine2"
         android:textStyle="bold"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Continue Without Registration"
-        android:layout_below="@+id/register_button"
-        android:textColor="#2f4f4f"
-        />
+        android:layout_below="@+id/splash_app_description"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/wo_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
+            android:alpha="0.75"
+            android:text="Continue without registration"
+            android:textStyle="bold"
+            android:layout_below="@+id/register_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         </RelativeLayout>
 
 

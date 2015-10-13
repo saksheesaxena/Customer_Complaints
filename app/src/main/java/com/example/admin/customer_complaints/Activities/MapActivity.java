@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -188,6 +189,12 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     public void onMarkerDragStart(Marker marker) {
         tvLocInfo.setText("Marker " + marker.getId() + " DragStart");
 
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_home).setVisible(false);
+        return true;
     }
 
 

@@ -1,8 +1,12 @@
 package com.example.admin.customer_complaints.Activities;
 
+import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.admin.customer_complaints.Adapters.HomeViewAdapter;
 
 import com.example.admin.customer_complaints.R;
@@ -21,24 +26,27 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private HomeViewAdapter mAdapter;
-    private Toolbar toolbar;
+
 
     String complaint, track, language, about;
 
     String[] home_text;
     int[] image;
+    public String selected_ulb;
+
+
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Bundle extras = getIntent().getExtras();
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (extras != null) {
+            selected_ulb = extras.getString("SELECTED_ULB");
 
         }
+
         //   getSupportActionBar().setTitle("Jan Seva");
         complaint = getString(R.string.complaint);
         track = getString(R.string.track);
@@ -54,6 +62,7 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
                 R.mipmap.home_language, R.mipmap.home_about
         };
         setContentView(R.layout.final_activity_home);
+
         mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         mAdapter = new HomeViewAdapter(home_text, image);
         mAdapter.SetOnItemClickListener(this);
@@ -109,6 +118,44 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+       if (id == R.id.action_home)
+        {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle(R.string.change_ulb);
+            alertDialogBuilder
+                    .setMessage("Your current ULB is  " + selected_ulb)
+                    .setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new MaterialDialog.Builder(HomeActivity.this)
+                                    .dividerColorRes(R.color.colorPrimary)
+                                    .title(R.string.select_ulb)
+                                    .items(R.array.ulb_names)
+                                    .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
+                                        @Override
+                                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                            Intent intent =  new Intent(HomeActivity.this, HomeActivity.class);
+                                            intent.putExtra("SELECTED_ULB",text);
+                                            startActivity(intent);
+
+                                        }
+                                    })
+                                    .positiveText("Ok")
+                                    .show();
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alertDialog= alertDialogBuilder.create();
+            alertDialog.show();
+
         }
 
         return super.onOptionsItemSelected(item);

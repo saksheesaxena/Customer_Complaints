@@ -22,12 +22,7 @@ import com.example.admin.customer_complaints.R;
                     setContentView(getLayoutResource());
                     toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
-                            if (toolbar != null) {
-                            setSupportActionBar(toolbar);
-                            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-                                      }
                 }
 
                    protected abstract int getLayoutResource();

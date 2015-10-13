@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.media.ExifInterface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -120,5 +121,10 @@ public class ExIfActivity extends BaseActivity {
         return R.layout.activity_exif;
     }
 
-
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_home).setVisible(false);
+        return true;
+    }
 }
