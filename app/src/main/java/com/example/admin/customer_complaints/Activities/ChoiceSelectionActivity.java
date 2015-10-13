@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +20,6 @@ import java.io.File;
  * Created by Sakshee on 24-Aug-15.
  */
 public class ChoiceSelectionActivity extends BaseActivity {
-
-
     Button b1;
     Button b2;
     Button b3;
@@ -74,7 +71,7 @@ public class ChoiceSelectionActivity extends BaseActivity {
 
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ChoiceSelectionActivity.this, UploadActivity.class));
+                startActivity(new Intent(ChoiceSelectionActivity.this, PhotoattachmentActivity.class));
             }
         });
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.customer_complaints.Activities.PhotoattachmentActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageView android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:id="@+id/image_uploaded"
+        android:background="@color/colorAccent"
+        android:src="@drawable/imgloc"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_location"
+        android:text="Get Location" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_vertical" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the description"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:entries="@array/departments"
+        android:id="@+id/department_spinner"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:src="@drawable/attachment"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:text="              Upload Photo"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:id="@+id/textView4"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_horizontal" />
+
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/cut"
+            android:layout_below="@+id/imageButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="10dp"
+            android:background="#3F51B5"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/turn"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#3F51B5"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
