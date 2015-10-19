@@ -9,4 +9,5 @@
     <dimen name="keyLine3">48dp</dimen>
     <dimen name="keyLine4">64dp</dimen>
     <dimen name="keyLine5">72dp</dimen>
+    <dimen name="keyLine6">88dp</dimen>
 </resources>

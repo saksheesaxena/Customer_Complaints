@@ -8,21 +8,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.admin.customer_complaints.DatabaseHandler;
 import com.example.admin.customer_complaints.R;
+import com.example.admin.customer_complaints.library.LoginDataBaseAdapter;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 
 /**
  * Created by Sakshee on 13-Sep-15.
@@ -30,11 +32,14 @@ import java.net.URL;
 public class SignUpActivity extends Activity {
 
 
-    EditText inputName, inputAddress, inputMobile, inputEmail;
-    AppCompatButton inputGender;
-    Spinner inputUlb ,inputDistrict;
-    Button registerButton;
-    String name, ulb, address, mobile, gender, email;
+    EditText inputName, inputAddress, inputMobile, inputEmail , inputGender;
+    Spinner inputUlb ;
+    Button signup_register_button;
+    String name, address, mobile, gender, email;
+    private Spinner typeSpinner;
+    public String selected_ulb;
+    LoginDataBaseAdapter loginDataBaseAdapter;
+
 
 
 
@@ -43,43 +48,74 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup1);
 
-        DatabaseHandler db = new DatabaseHandler(this);
 
+
+// get Instance  of Database Adapter
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+        try {
+            loginDataBaseAdapter=loginDataBaseAdapter.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         // Defining Layout items
         inputName = (EditText) findViewById(R.id.signup_name);
         inputAddress = (EditText) findViewById(R.id.signup_address);
         inputMobile = (EditText) findViewById(R.id.signup_mob);
-        inputGender = (AppCompatButton) findViewById(R.id.signup_gender);
+        inputGender = (EditText) findViewById(R.id.signup_gender);
+        inputGender.setOnClickListener(new setGender());
         inputEmail = (EditText) findViewById(R.id.signup_email);
         inputUlb = (Spinner) findViewById(R.id.signup_ulb);
+        signup_register_button = (Button) findViewById(R.id.signup_register_btn);
+        spinner();
+        inputUlb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        registerButton = (Button) findViewById(R.id.signup_register_btn);
-        inputGender.setOnClickListener(new setGender());
-     //   parentSpinner();
+                selected_ulb = inputUlb.getSelectedItem().toString();
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
 
 
+            }
+        });
 
-    registerButton.setOnClickListener(new View.OnClickListener() {
+     signup_register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = inputName.getText().toString();
                 address = inputAddress.getText().toString();
-                mobile = inputMobile.getText().toString();
+               mobile = inputMobile.getText().toString();
                 gender = inputGender.getText().toString();
                 email = inputEmail.getText().toString();
-
-                if (name.isEmpty() || ulb.isEmpty() || address.isEmpty() || mobile.isEmpty() || gender.isEmpty() || email.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "One or more fields are empty", Toast.LENGTH_SHORT).show();
+                if (name.isEmpty() || mobile.isEmpty() || address.isEmpty() ||
+                        gender.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Some fields are missing.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Save the Data in Database
+                    loginDataBaseAdapter.insertEntry(name, mobile,gender,address,email,selected_ulb);
+                    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                    intent.putExtra("SELECTED_ULB", selected_ulb);
+                    startActivity(intent);
                 }
 
-                startActivity(new Intent(SignUpActivity.this,HomeActivity.class));
+
 
             }
 
-        });
-    }
 
+        });
+
+    }
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        loginDataBaseAdapter.close();
+    }
 
 
     //Async task to check whether Internet Connection is working
@@ -125,6 +161,7 @@ public class SignUpActivity extends Activity {
             }
 
 
+
             }
 
     private class setGender implements View.OnClickListener{
@@ -144,6 +181,15 @@ public class SignUpActivity extends Activity {
                     .show();
 
         }
+    }
+
+
+    public void spinner()
+    {
+        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ulb_names));
+        Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        inputUlb.setAdapter(Dadapter);
+
     }
 
 

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  >
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/keyLine1"
-    android:background="@color/colorWhite">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyLine1"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="@dimen/keyLine2"
+            android:background="@mipmap/ic_user"
+            />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,68 +27,83 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp"
         />
-    <EditText
-        android:id="@+id/signup_name"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_name" />
-    <EditText
-        android:id="@+id/signup_mob"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_mobile" />
-    <EditText
-        android:id="@+id/signup_address"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_address" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signup_name"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            app:met_iconLeft="@drawable/signup_name"
+            app:met_iconPadding="0dp"
+            app:met_floatingLabel="highlight"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signup_mob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            app:met_iconLeft="@drawable/signup_mob"
+            app:met_iconPadding="0dp"
+            app:met_floatingLabel="highlight"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signup_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            app:met_iconLeft="@drawable/signup_address"
+            app:met_iconPadding="0dp"
+            app:met_floatingLabel="highlight"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signup_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gender"
+            app:met_iconLeft="@drawable/signup_gender"
+            app:met_iconPadding="0dp"
+            app:met_floatingLabel="highlight"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select ULB"
-        android:id="@+id/textView6" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:met_iconLeft="@drawable/signup_email"
+            app:met_iconPadding="0dp"
+            app:met_floatingLabel="highlight"
+            android:inputType="textEmailAddress"
+            />
 
-    <Spinner
-        android:id="@+id/signup_ulb"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_ulb"
-        android:spinnerMode="dialog"
-        android:prompt="@string/signup_ulb"
-        />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/signup_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:background="@color/colorWhite"
-        android:hint="@string/signup_gender"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:paddingLeft="16dp"
-        android:gravity="start|center_vertical" />
-    <EditText
-        android:id="@+id/signup_email"
-        android:layout_marginTop="@dimen/keyLine1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_mail"
-        android:inputType="textEmailAddress"/>
 
-    <Button
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/signup_ulb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:ms_multiline="false"
+            app:ms_hint="@string/select_ulb"
+            app:ms_floatingLabelText="@string/select_ulb"
+            app:ms_highlightColor="@color/colorPrimary"
+            app:ms_floatingLabelColor="@color/colorPrimary"
+            app:ms_errorColor="@color/colorError"
+            app:ms_arrowColor="@color/colorPrimary"
+            />
+
+        <Button
         android:id="@+id/signup_register_btn"
         android:layout_marginTop="@dimen/keyLine2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#3F51B5"
-        android:text="Register"/>
+        android:text="Register"
+
+            android:textColor="@color/colorWhite"/>
 
 </LinearLayout>
 

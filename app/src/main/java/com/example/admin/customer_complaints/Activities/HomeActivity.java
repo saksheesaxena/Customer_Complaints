@@ -20,6 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.admin.customer_complaints.Adapters.HomeViewAdapter;
 
 import com.example.admin.customer_complaints.R;
+import com.example.admin.customer_complaints.library.LoginDataBaseAdapter;
 
 
 public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItemClickListener {
@@ -37,6 +38,8 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
 
 
 
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
             selected_ulb = extras.getString("SELECTED_ULB");
 
         }
+        // create a instance of SQLite Database
+
+
 
         //   getSupportActionBar().setTitle("Jan Seva");
         complaint = getString(R.string.complaint);

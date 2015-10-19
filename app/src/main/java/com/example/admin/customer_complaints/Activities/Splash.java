@@ -1,31 +1,34 @@
 package com.example.admin.customer_complaints.Activities;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.admin.customer_complaints.R;
+import com.example.admin.customer_complaints.library.LoginDataBaseAdapter;
+
+import java.sql.SQLException;
 
 /**
  * Created by Sakshee on 05-Aug-15.
  */
-public class Splash extends Activity implements Animation.AnimationListener {
-    Button register_choice , wo_register;
+public class Splash extends Activity {
+    Button signin_button,signup_button;
     ImageView logo;
-    TextView app_name;
+    TextView app_name, wo_register;
     TextView app_desc;
-Animation animFadeIn, animTranslate;
+    LoginDataBaseAdapter loginDataBaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,29 +37,23 @@ Animation animFadeIn, animTranslate;
         logo = (ImageView) findViewById(R.id.splash_logo);
         app_name = (TextView) findViewById(R.id.splash_welcome);
         app_desc = (TextView) findViewById(R.id.splash_app_description);
-        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
-        animFadeIn.setAnimationListener(this);
-        animTranslate = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate);
-        logo.startAnimation(animFadeIn);
-        app_name.startAnimation(animFadeIn);
-        app_desc.startAnimation(animFadeIn);
+        signin_button = (Button) findViewById(R.id.signin_button);
+        signup_button = (Button) findViewById(R.id.signup_button);
+        wo_register = (TextView) findViewById(R.id.skip_text_view);
 
-        register_choice = (Button) findViewById(R.id.register_button);
-        wo_register = (Button) findViewById(R.id.wo_button);
+        final LinearLayout button_layout = (LinearLayout) findViewById(R.id.button_layout);
+        final LinearLayout image_layout= (LinearLayout) findViewById(R.id.image_layout);
+        button_layout.setVisibility(View.GONE);
 
-       register_choice.setVisibility(View.INVISIBLE);
+        // create a instance of SQLite Database
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+        try {
+            loginDataBaseAdapter=loginDataBaseAdapter.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        wo_register.setVisibility(View.INVISIBLE);
-
-
-
-
-
-
-
-
-
-      Thread timerThread = new Thread() {
+        Thread timerThread = new Thread() {
             public void run() {
                 try {
                     sleep(1000);
@@ -66,21 +63,38 @@ Animation animFadeIn, animTranslate;
                     e.printStackTrace();
                 }
 finally {
+                   final Animation animTranslate  = AnimationUtils.loadAnimation(Splash.this, R.anim.translate);
+                    animTranslate.setAnimationListener(new Animation.AnimationListener() {
 
+                        @Override
+                        public void onAnimationStart(Animation arg0) {
+                        }
 
-                    wo_register.getHandler().post(new Runnable() {
-                        public void run() {
-                            wo_register.setVisibility(View.VISIBLE);
-                            wo_register.startAnimation(animFadeIn);
+                        @Override
+                        public void onAnimationRepeat(Animation arg0) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation arg0) {
+                            button_layout.setVisibility(View.VISIBLE);
+                            Animation animFade = AnimationUtils.loadAnimation(Splash.this, R.anim.fade);
+                            button_layout.startAnimation(animFade);
                         }
                     });
-                    register_choice.getHandler().post(new Runnable() {
+                    runOnUiThread(new Runnable() {
+                        @Override
                         public void run() {
-                            register_choice.setVisibility(View.VISIBLE);
-                            register_choice.setAnimation(animFadeIn);
+
+                            image_layout.startAnimation(animTranslate);
                         }
                     });
-                    register_choice.setOnClickListener(new View.OnClickListener() {
+
+
+
+                }
+
+
+                    signup_button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             startActivity(new Intent(Splash.this,SignUpActivity.class));
@@ -89,7 +103,43 @@ finally {
 
 
                     });
+                signin_button.setOnClickListener(new View.OnClickListener() {
+                                                     @Override
+                                                     public void onClick(View v) {
+                                                         final Dialog dialog = new Dialog(Splash.this);
+                                                         dialog.setContentView(R.layout.activity_signin);
+                                                         dialog.setTitle("Login");
+                                                         final EditText editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserNameToLogin);
+                                                         final EditText editTextMobile = (EditText) dialog.findViewById(R.id.editTextMobileToLogin);
 
+                                                         Button btnSignIn = (Button) dialog.findViewById(R.id.buttonSignIn);
+                                                         // Set On ClickListener
+                                                         btnSignIn.setOnClickListener(new View.OnClickListener() {
+
+                                                             public void onClick(View v) {
+                                                                 // get The User name and Password
+                                                                 String userName = editTextUserName.getText().toString();
+                                                                 String mobile = editTextMobile.getText().toString();
+
+                                                                 // fetch the Password form database for respective user name
+                                                                 String storedMobile = loginDataBaseAdapter.getSinlgeEntry(userName);
+
+                                                                 // check if the Stored password matches with  Password entered by user
+                                                                 if (mobile.equals(storedMobile)) {
+                                                                     Toast.makeText(Splash.this, "Congrats: Login Successfull", Toast.LENGTH_LONG).show();
+                                                                     dialog.dismiss();
+                                                                 } else {
+                                                                     Toast.makeText(Splash.this, "User Name or Mobile does not match", Toast.LENGTH_LONG).show();
+                                                                 }
+                                                             }
+                                                         });
+
+                                                         dialog.show();
+                                                     }
+
+
+
+                                                 });
 
                     wo_register.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -117,10 +167,17 @@ finally {
 
 
                 }
-            }
 
-        };
+
+            };
         timerThread.start();
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
     }
 
     @Override
@@ -133,18 +190,4 @@ finally {
 
 
 
-    @Override
-    public void onAnimationStart(Animation animation) {
-
-    }
-
-    @Override
-    public void onAnimationEnd(Animation animation) {
-
-    }
-
-    @Override
-    public void onAnimationRepeat(Animation animation) {
-
-    }
 }
