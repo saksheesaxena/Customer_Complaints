@@ -24,11 +24,12 @@ import java.util.Locale;
 public class ExIfActivity extends BaseActivity {
 
 
-    String  imagefile = "/storage/extSdCard/DCIM/Camera/20150821_234409.jpg";
+   String  imagefile = "/storage/extSdCard/DCIM/Camera/20151021_025712.jpg";
     ImageView image;
     TextView ExIf;
     TextView addr;
     double latitude, longitude;
+    public String attrLATITUDE,attrLONGITUDE,add ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,9 @@ public class ExIfActivity extends BaseActivity {
         Bitmap bm = BitmapFactory.decodeFile(imagefile);
         image.setImageBitmap(bm);
         ExIf.setText(ReadExif(imagefile));
-        getMyLocationAddress();
+
+
+
 
 
 
@@ -55,11 +58,11 @@ public class ExIfActivity extends BaseActivity {
             ExifInterface exifInterface = new ExifInterface(file);
 
             exif += "\n TAG_GPS_LATITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-            String attrLATITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE) ;
+            attrLATITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
             exif += "\n TAG_GPS_LATITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
-            String attrLATITUDE_REF  = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
+            String attrLATITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
             exif += "\n TAG_GPS_LONGITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
-            String attrLONGITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+            attrLONGITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
             exif += "\n TAG_GPS_LONGITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
             String attrLONGITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
             geoDegree gD = new geoDegree(exifInterface);
@@ -67,10 +70,12 @@ public class ExIfActivity extends BaseActivity {
             exif += "\n TAG_Latitude_decimal " + gD.convertToDegree(attrLATITUDE);
             latitude = gD.convertToDegree(attrLATITUDE);
             gD.convertToDegree(attrLONGITUDE);
-            exif+= "\n Tag_Longitude_decimal"+ gD.convertToDegree(attrLONGITUDE);
+            exif += "\n Tag_Longitude_decimal" + gD.convertToDegree(attrLONGITUDE);
             longitude = gD.convertToDegree(attrLONGITUDE);
 
-        } catch (IOException e) {
+
+        }
+        catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             Toast.makeText(ExIfActivity.this,
@@ -86,35 +91,7 @@ public class ExIfActivity extends BaseActivity {
     }
 
 
-    public void getMyLocationAddress() {
 
-        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
-
-        try {
-
-            //Place your latitude and longitude
-            List<Address> addresses = geocoder.getFromLocation(latitude,longitude, 1);
-
-            if (addresses != null) {
-
-                Address fetchedAddress = addresses.get(0);
-                StringBuilder strAddress = new StringBuilder();
-
-                for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
-                    strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
-                }
-
-                addr.setText("I am at: " + strAddress.toString());
-
-            } else
-                addr.setText("No location found..!");
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Could not get address..!", Toast.LENGTH_LONG).show();
-        }
-    }
 
     @Override
     protected int getLayoutResource() {

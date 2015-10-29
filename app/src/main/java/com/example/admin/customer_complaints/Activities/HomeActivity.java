@@ -50,9 +50,6 @@ public class HomeActivity extends BaseActivity implements HomeViewAdapter.OnItem
 
         }
         // create a instance of SQLite Database
-
-
-
         //   getSupportActionBar().setTitle("Jan Seva");
         complaint = getString(R.string.complaint);
         track = getString(R.string.track);

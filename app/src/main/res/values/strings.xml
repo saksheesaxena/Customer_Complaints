@@ -842,9 +842,9 @@
 
     <!-- Map Activity -->
     <string name="Confirm">Confirm Location</string>
-    <string name="Content">Your present location is. Do you want to change location or continue with this?</string>
+    <string name="Content">You have selected the location : </string>
     <string name="Agree">Continue</string>
-    <string name="Disagree">Change Location</string>
+    <string name="Disagree">Cancel</string>
  <!--Navigation Drawer -->
  <string name="open">OPEN</string>
  <string name="close">CLOSE</string>

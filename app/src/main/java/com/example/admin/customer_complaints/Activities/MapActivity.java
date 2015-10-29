@@ -1,6 +1,7 @@
 package com.example.admin.customer_complaints.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,13 +36,14 @@ import java.util.Map;
 /**
  * Created by Sakshee on 26-Sep-15.
  */
-public class MapActivity extends FragmentActivity implements LocationListener,GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerDragListener {
+public class MapActivity extends FragmentActivity implements GoogleMap.OnMapClickListener,GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerDragListener {
 
     GoogleMap googleMap;
     boolean markerClicked;
-    TextView tvLocInfo;
+    TextView tvLocInfo,address_tv;
     Marker marker;
-    String present_location;
+    String present_location,changed_address = null;
+    double newlat, newlng;
 
 
 
@@ -57,13 +60,13 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         SupportMapFragment supportMapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         googleMap = supportMapFragment.getMap();
-        googleMap.setMyLocationEnabled(true);
+       // googleMap.setMyLocationEnabled(true);
         googleMap.setMapType(googleMap.MAP_TYPE_HYBRID);
         googleMap.setOnMapClickListener(this);
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerDragListener(this);
         markerClicked = false;
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    /*  LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String bestProvider = locationManager.getBestProvider(criteria, true);
         Location location = locationManager.getLastKnownLocation(bestProvider);
@@ -71,29 +74,31 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
             onLocationChanged(location);
         }
         locationManager.requestLocationUpdates(bestProvider, 20000, 0, this);
-
-
-    }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
+        */
+        Bundle b = getIntent().getExtras();
+        double palatitude = b.getDouble("lat");
+        double palongitude = b.getDouble("long");
         TextView locationTv = (TextView) findViewById(R.id.latlongLocation);
+        LatLng point = new LatLng(palatitude,palongitude);
+        googleMap.addMarker(new MarkerOptions()
+                .position(point)
+                .title("Current Location")
 
-        googleMap.addMarker(new MarkerOptions().position(latLng));
-       // googleMap.setOnMarkerDragListener(getnewLocation());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+//        marker.showInfoWindow();
+
+        // googleMap.setOnMarkerDragListener(getnewLocation());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(point));
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-        //    locationTv.setText("Latitude:" + latitude + ", Longitude:" + longitude);
+        // locationTv.setText("Latitude:" + lat + ", Longitude:" + lng);
+
+        //  Toast.makeText(getApplicationContext(),""+palatitude + palongitude, Toast.LENGTH_LONG).show();
+
         Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
         try {
 
-            //Place your latitude and longitude
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            //Place your my_latitude and my_longitude
+            List<Address> addresses = geocoder.getFromLocation(palatitude,palongitude, 1);
 
             if (addresses != null) {
 
@@ -105,12 +110,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                 }
                 present_location = strAddress.toString();
 
-                new MaterialDialog.Builder(this)
-                        .title(R.string.Confirm)
-                        .content(R.string.Content)
-                        .positiveText(R.string.Agree)
-                        .negativeText(R.string.Disagree)
-                        .show();
+
                 locationTv.setText("I am at: " + strAddress.toString());
 
             } else
@@ -126,20 +126,9 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     }
 
 
-    @Override
-    public void onProviderDisabled(String provider) {
-        // TODO Auto-generated method stub
-    }
 
-    @Override
-    public void onProviderEnabled(String provider) {
-        // TODO Auto-generated method stub
-    }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-    }
+
 
     private boolean isGooglePlayServicesAvailable() {
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -166,13 +155,79 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     public void onMapLongClick(LatLng point) {
         if (marker != null) {
             marker.remove();
+
+
         }
       tvLocInfo.setText("New marker added@" + point.toString());
+        Location location = new Location("Test");
+        location.setLatitude(point.latitude);
+        location.setLongitude(point.longitude);
+        double changed_lat = location.getLatitude();
+        double changed_lng = location.getLongitude();
+        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
+        try {
+
+            //Place your my_latitude and my_longitude
+            List<Address> addresses = geocoder.getFromLocation(changed_lat,changed_lng, 1);
+
+            if (addresses != null) {
+
+                Address fetchedAddress = addresses.get(0);
+                StringBuilder strAddress = new StringBuilder();
+
+                for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
+                    strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
+                }
+                present_location = strAddress.toString();
+
+               new MaterialDialog.Builder(this)
+
+                        .title(R.string.Confirm)
+                        .content(R.string.Content + present_location)
+                        .positiveText(R.string.Agree)
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                           public void onPositive(MaterialDialog dialog) {
+
+
+                           }
+                       })
+                        .negativeText(R.string.Disagree)
+
+                        .show();
+
+
+
+                tvLocInfo.setText("I am at: " + strAddress.toString());
+                changed_address = strAddress.toString();
+
+
+                Intent intent =  new Intent(MapActivity.this, PhotoattachmentActivity.class);
+                intent.putExtra("CHANGED_LOCATION", changed_address);
+                startActivity(intent);
+
+
+            } else
+               tvLocInfo.setText("No location found..!");
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Could not get address..!", Toast.LENGTH_LONG).show();
+        }
+
         marker = googleMap.addMarker(new MarkerOptions()
                 .position(point)
+                .title("New Location")
+                .snippet(changed_address)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .draggable(true)
                 .visible(true));
+
         markerClicked = false;
+        marker.showInfoWindow();
+
+
     }
 
     @Override

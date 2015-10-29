@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/imageView2"
-        android:src="@drawable/icon2"
+        android:src="@drawable/upload_image"
         android:layout_gravity="center_vertical"
         android:contentDescription="imagedescription" />
 
