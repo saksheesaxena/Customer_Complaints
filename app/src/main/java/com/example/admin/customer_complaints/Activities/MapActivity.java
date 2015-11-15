@@ -83,8 +83,7 @@ public class MapActivity extends FragmentActivity implements GoogleMap.OnMapClic
         googleMap.addMarker(new MarkerOptions()
                 .position(point)
                 .title("Current Location")
-
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 //        marker.showInfoWindow();
 
         // googleMap.setOnMarkerDragListener(getnewLocation());
@@ -155,83 +154,85 @@ public class MapActivity extends FragmentActivity implements GoogleMap.OnMapClic
     public void onMapLongClick(LatLng point) {
         if (marker != null) {
             marker.remove();
-
-
         }
-      tvLocInfo.setText("New marker added@" + point.toString());
+
+
+        tvLocInfo.setText("New marker added@" + point.toString());
         Location location = new Location("Test");
         location.setLatitude(point.latitude);
         location.setLongitude(point.longitude);
         double changed_lat = location.getLatitude();
+
+
         double changed_lng = location.getLongitude();
-        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
-        try {
+        if ((changed_lat > 26.87 || changed_lat <21.2 ) && (changed_lng > 82.49  || changed_lng < 74.02 )) {
+            Toast.makeText(getApplicationContext(), "Selected location is outside Madhya Pradesh", Toast.LENGTH_LONG).show();
+        } else {
+            Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
+            try {
 
-            //Place your my_latitude and my_longitude
-            List<Address> addresses = geocoder.getFromLocation(changed_lat,changed_lng, 1);
+                //Place your my_latitude and my_longitude
+                List<Address> addresses = geocoder.getFromLocation(changed_lat, changed_lng, 1);
 
-            if (addresses != null) {
+                if (addresses != null) {
 
-                Address fetchedAddress = addresses.get(0);
-                StringBuilder strAddress = new StringBuilder();
+                    Address fetchedAddress = addresses.get(0);
+                    final StringBuilder strAddress = new StringBuilder();
 
-                for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
-                    strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
-                }
-                present_location = strAddress.toString();
+                    for (int i = 0; i < fetchedAddress.getMaxAddressLineIndex(); i++) {
+                        strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
+                    }
+                    present_location = strAddress.toString();
 
-               new MaterialDialog.Builder(this)
+                    new MaterialDialog.Builder(this)
 
-                        .title(R.string.Confirm)
-                        .content(R.string.Content + present_location)
-                        .positiveText(R.string.Agree)
-                        .callback(new MaterialDialog.ButtonCallback() {
-                            @Override
-                           public void onPositive(MaterialDialog dialog) {
-
-
-                           }
-                       })
-                        .negativeText(R.string.Disagree)
-
-                        .show();
-
-
-
-                tvLocInfo.setText("I am at: " + strAddress.toString());
-                changed_address = strAddress.toString();
+                            .title(R.string.Confirm)
+                            .content("You have selected the location:" + present_location)
+                            .positiveText(R.string.Agree)
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                @Override
+                                public void onPositive(MaterialDialog dialog) {
+                                    tvLocInfo.setText("I am at: " + strAddress.toString());
+                                    changed_address = strAddress.toString();
+                                    Intent intent = new Intent(MapActivity.this, PhotoattachmentActivity.class);
+                                    intent.putExtra("CHANGED_LOCATION", changed_address);
+                                    startActivity(intent);
 
 
-                Intent intent =  new Intent(MapActivity.this, PhotoattachmentActivity.class);
-                intent.putExtra("CHANGED_LOCATION", changed_address);
-                startActivity(intent);
+                                }
+                            })
+                            .negativeText(R.string.Disagree)
+                            .show();
 
 
-            } else
-               tvLocInfo.setText("No location found..!");
+                } else
+                    tvLocInfo.setText("No location found..!");
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Could not get address..!", Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Could not get address..!", Toast.LENGTH_LONG).show();
+            }
+
+
+            marker = googleMap.addMarker(new MarkerOptions()
+                    .position(point)
+                    .title("New Location")
+                    .snippet(changed_address)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                    .draggable(true)
+                    .visible(true));
+
+            markerClicked = false;
+            marker.showInfoWindow();
+
+
         }
-
-        marker = googleMap.addMarker(new MarkerOptions()
-                .position(point)
-                .title("New Location")
-                .snippet(changed_address)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .draggable(true)
-                .visible(true));
-
-        markerClicked = false;
-        marker.showInfoWindow();
-
-
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
+
         tvLocInfo.setText("Marker " + marker.getId() + " Drag@" + marker.getPosition());
     }
 
