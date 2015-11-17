@@ -41,9 +41,6 @@
         <activity android:label="Complaint Section" android:name=".Activities.ComplaintDescActivity">
         </activity>
 
-        <activity android:label="Complaint Section" android:name=".Activities.CameraclickedActivity">
-        </activity>
-
         <activity android:label="Complaint Section" android:name=".Activities.PhotoattachmentActivity">
         </activity>
 
