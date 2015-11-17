@@ -91,6 +91,9 @@ public class ChoiceSelectionActivity extends BaseActivity {
                 // Image captured and saved to fileUri specified in the Intent
                 Toast.makeText(this, "Image saved to:\n" +
                         data.getData(), Toast.LENGTH_LONG).show();
+                Intent i= new Intent(ChoiceSelectionActivity.this, CameraclickedActivity.class);
+                i.putExtra("KEY", imageUri);
+                startActivity(i);
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
