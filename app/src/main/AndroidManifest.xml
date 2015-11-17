@@ -51,6 +51,7 @@
         <activity android:label="Location" android:name=".Activities.ExIfActivity"/>
 
         <activity android:label="Upload photo" android:name=".Activities.UploadActivity"/>
+        <activity android:label="Camera" android:name=".Activities.CameraPhotoAttachmentActivity"/>
         <activity android:label="Map" android:name=".Activities.MapActivity"/>
         <activity android:label="Personal details" android:name=".Activities.PersonalDetailsActivity"/>
         <meta-data

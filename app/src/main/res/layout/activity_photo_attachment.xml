@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.admin.customer_complaints.Activities.PhotoattachmentActivity"
     android:orientation="vertical"
     android:weightSum="1"
@@ -76,10 +79,37 @@
             />
     </LinearLayout>
 
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/departmentSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:ms_multiline="false"
+        app:ms_hint="@string/Choose_department"
+        app:ms_floatingLabelText="@string/Choose_department"
+        app:ms_highlightColor="@color/colorPrimary"
+        app:ms_floatingLabelColor="@color/colorPrimary"
+        app:ms_errorColor="@color/colorError"
+        app:ms_arrowColor="@color/colorPrimary"
+        />
+    <fr.ganfra.materialspinner.MaterialSpinner
+
+        android:id="@+id/categorySpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:ms_multiline="false"
+        app:ms_hint="Category of problem"
+        app:ms_floatingLabelText="category of problem"
+        app:ms_highlightColor="@color/colorPrimary"
+        app:ms_floatingLabelColor="@color/colorPrimary"
+        app:ms_errorColor="@color/colorError"
+        app:ms_arrowColor="@color/colorPrimary"
+        />
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter the description"
+        android:hint="Enter complaint description"
         android:inputType="textMultiLine"
         android:lines="2"
        />
@@ -110,7 +140,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="Submit"
             android:id="@+id/turn"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="150dp"
@@ -124,3 +154,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

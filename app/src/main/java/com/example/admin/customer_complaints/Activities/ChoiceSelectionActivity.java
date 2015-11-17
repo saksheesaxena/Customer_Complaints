@@ -1,6 +1,10 @@
 package com.example.admin.customer_complaints.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,12 +29,17 @@ public class ChoiceSelectionActivity extends BaseActivity {
     Button b3;
    // Button button_location;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    private Uri imageUri;
+    public Uri imageUri;
     private Uri fileUri;
     private Intent intent;
     private ImageButton btn;
     private ImageView mImageView;
     String mCurrentPhotoPath;
+    ImageView test;
+    public Uri new_image_uri;
+    public String final_photo_uri;
+    public String new_file;
+
 
 
 
@@ -45,6 +54,7 @@ public class ChoiceSelectionActivity extends BaseActivity {
         b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.button2);
         b3 = (Button) findViewById(R.id.button3);
+        test = (ImageView) findViewById(R.id.test);
       //  button_location = (Button) findViewById(R.id.button_location);
 
 
@@ -52,7 +62,7 @@ public class ChoiceSelectionActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // create intent to take a picture and return control to the calling application
-                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 File photo = new File(Environment.getExternalStorageDirectory(), "Pic.jpg");
                 //You save your image in your sdcard by name "Pic.jpg"
 
@@ -63,9 +73,11 @@ public class ChoiceSelectionActivity extends BaseActivity {
                 imageUri = Uri.fromFile(photo);  //Save uri that is path of your image
 
 
-
                 // start the image capture Intent
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+
+
             }
         });
 
@@ -84,13 +96,37 @@ public class ChoiceSelectionActivity extends BaseActivity {
 
 
     }
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to fileUri specified in the Intent
+                new_image_uri = data.getData();
+                final_photo_uri = new_image_uri.toString();
+
                 Toast.makeText(this, "Image saved to:\n" +
                         data.getData(), Toast.LENGTH_LONG).show();
+                new_file = getRealPathFromURI(ChoiceSelectionActivity.this, new_image_uri);
+                Bitmap bm = BitmapFactory.decodeFile(new_file);
+                test.setImageBitmap(bm);
+               Intent iSecond=new Intent(ChoiceSelectionActivity.this,CameraPhotoAttachmentActivity.class);
+                iSecond.putExtra("image_path",new_file);
+                startActivity(iSecond);
+
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {

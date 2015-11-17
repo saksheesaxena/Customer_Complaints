@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,7 +41,7 @@ public class PhotoattachmentActivity extends BaseActivity{
     TextView tv,show_tv,address_tv;
     ImageView uploaded_image, change_location_image_view;
     String[] complaint_department;
-    Spinner spinner;
+    Spinner dept_spinner ,category_spinner;
     public String final_image_uri;
     double my_latitude, my_longitude;
     public String new_file, location,add,new_address;
@@ -55,6 +57,8 @@ public class PhotoattachmentActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_attachment);
+        dept_spinner = (Spinner) findViewById(R.id.departmentSpinner);
+        category_spinner = (Spinner)findViewById(R.id.categorySpinner);
         uploaded_image = (ImageView) findViewById(R.id.image_uploaded);
         change_location_image_view = (ImageView) findViewById(R.id.change_location_image_view);
         cancel = (Button) findViewById(R.id.cut);
@@ -64,8 +68,8 @@ public class PhotoattachmentActivity extends BaseActivity{
         show_tv = (TextView) findViewById(R.id.textView5);
         attachment = (ImageButton)findViewById(R.id.imageButton2);
         address_layout = (LinearLayout)findViewById(R.id.address_layout);
+        parentSpinner();
       //  button_location = (Button)findViewById(R.id.button_location);
-        spinner = (Spinner)findViewById(R.id.department_spinner);
         complaint_department = getResources().getStringArray(R.array.departments);
         if (i==0) {
             address_layout.setVisibility(View.GONE);
@@ -120,11 +124,57 @@ public class PhotoattachmentActivity extends BaseActivity{
 
             }
         });
-
-
-
-
     }
+
+
+        public void parentSpinner() {
+        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.departments));
+        Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        dept_spinner.setAdapter(Dadapter);
+        dept_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {int selectedDept = position+1;
+                DeptSpinner(selectedDept); }
+            public void onNothingSelected(AdapterView<?> parent) {}
+                                               }
+                                 );
+               }
+
+    private int getDistrictResourceId ( int districtnr ) {
+                   int resId = R.array.app_language;
+                    switch ( districtnr )
+                    {
+                                case 1:
+                                resId = R.array.app_language;
+                                break;
+                        case 2:
+                                resId = R.array.signup_gender_array;
+                               break;
+
+                                // please add the rest
+                                    }
+
+                          return resId;
+                }
+
+                    public void DeptSpinner ( int districtnr) {
+
+                            int resId = getDistrictResourceId( districtnr );
+
+                            ArrayAdapter<String> Cadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(resId));
+                   Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                    dept_spinner.setAdapter(Cadapter);
+                        dept_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                                               }
+                                                                            public void onNothingSelected(AdapterView<?> parent) {
+                                                                                }
+                                                                        }
+                                    );
+                }
+
+
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
