@@ -70,17 +70,28 @@ public class PhotoattachmentActivity extends BaseActivity{
         address_layout = (LinearLayout)findViewById(R.id.address_layout);
         parentSpinner();
       //  button_location = (Button)findViewById(R.id.button_location);
-        complaint_department = getResources().getStringArray(R.array.departments);
-        if (i==0) {
-            address_layout.setVisibility(View.GONE);
-        }
-
+        complaint_department = getResources().getStringArray(R.array.departments_name);
+       address_layout.setVisibility(View.INVISIBLE);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             new_address = extras.getString("CHANGED_LOCATION");
             address_layout.setVisibility(View.VISIBLE);
             address_tv.setText(new_address);
 
+
+
+        }
+        if (extras != null) {
+            String image_path = extras.getString("image_path");
+            Toast.makeText(getApplicationContext(),image_path,Toast.LENGTH_LONG).show();
+
+            Bitmap bm = decodeSampledBitmapFromPath(image_path, 500, 500);
+            uploaded_image.setImageBitmap(bm);
+            Uri uri = Uri.parse(image_path);
+      //      new_file = getRealPathFromURI(PhotoattachmentActivity.this, uri);
+            ReadExif(image_path);
+            address_layout.setVisibility(View.VISIBLE);
+            getMyLocationAddress();
 
         }
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +139,7 @@ public class PhotoattachmentActivity extends BaseActivity{
 
 
         public void parentSpinner() {
-        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.departments));
+        ArrayAdapter<String> Dadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.departments_name));
         Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         dept_spinner.setAdapter(Dadapter);
         dept_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -140,17 +151,16 @@ public class PhotoattachmentActivity extends BaseActivity{
                }
 
     private int getDistrictResourceId ( int districtnr ) {
-                   int resId = R.array.app_language;
+                   int resId = R.array.market_dept;
                     switch ( districtnr )
                     {
                                 case 1:
-                                resId = R.array.app_language;
+                                resId = R.array.market_dept;
                                 break;
                         case 2:
                                 resId = R.array.signup_gender_array;
                                break;
-
-                                // please add the rest
+                        // please add the rest
                                     }
 
                           return resId;
@@ -162,8 +172,8 @@ public class PhotoattachmentActivity extends BaseActivity{
 
                             ArrayAdapter<String> Cadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(resId));
                    Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                    dept_spinner.setAdapter(Cadapter);
-                        dept_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    category_spinner.setAdapter(Cadapter);
+                        category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                                                }
                                                                             public void onNothingSelected(AdapterView<?> parent) {

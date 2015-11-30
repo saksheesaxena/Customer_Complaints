@@ -3,7 +3,10 @@ package com.example.admin.customer_complaints.Activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.admin.customer_complaints.R;
@@ -13,13 +16,19 @@ import com.example.admin.customer_complaints.R;
  */
 
 public class CameraPhotoAttachmentActivity extends BaseActivity{
-    ImageView uploaded_image;
+    ImageView uploaded_image , change_location_image_view;
+    ImageButton attachment;
+    LinearLayout upload_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_attachment);
         uploaded_image = (ImageView) findViewById(R.id.image_uploaded);
         Bundle extras = getIntent().getExtras();
+        upload_layout = (LinearLayout) findViewById(R.id.upload_layout);
+        upload_layout.setVisibility(View.INVISIBLE);
+      //  attachment.setVisibility(View.INVISIBLE);
+      //  change_location_image_view.setVisibility(View.INVISIBLE);
 
         if (extras != null) {
             String image_path = extras.getString("image_path");
@@ -44,8 +53,6 @@ public class CameraPhotoAttachmentActivity extends BaseActivity{
         options.inJustDecodeBounds = false;
         Bitmap bmp = BitmapFactory.decodeFile(path, options);
         return bmp;
-
-
 
     }
 

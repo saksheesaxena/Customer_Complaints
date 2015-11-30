@@ -16,7 +16,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take photo and register the complaint"
+        android:text="register complaint with photo"
         android:id="@+id/button1"
         android:background="#3F51B5"
         android:layout_alignParentTop="true"
@@ -25,13 +25,6 @@
         android:textColor="@color/colorWhite"
        />
 
-    <Button android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/button2"
-        android:background="#3F51B5"
-        android:layout_marginTop="50dp"
-        android:text="Upload photo and register complaint"
-        android:textColor="@color/colorWhite"/>
 
     <Button
         android:layout_width="match_parent"
@@ -47,6 +40,14 @@
             android:id="@+id/test"
             />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_tv"
+        />
+
+
 
 
 

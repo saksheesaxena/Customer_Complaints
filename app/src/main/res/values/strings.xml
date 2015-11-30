@@ -11,8 +11,8 @@
 
     <!-- second activity settings-->
     <string name="Choose_department">Choose a Department</string>
-    <string-array name="departments">
-        <item>Enter department</item>
+    <string-array name="departments_name">
+
         <item>market department </item>
         <item>water supply</item>
         <item>Employees Future fund</item>
@@ -30,6 +30,11 @@
         <item>Accountant</item>
 
     </string-array>
+ <string-array name="market_dept">
+  <item>aws</item>
+  <item>2dedfd</item>
+  <item>swsw</item>
+ </string-array>
     <!-- Toolbar Strings -->
     <string name="toolbar_text_woPhoto">Complaint Section</string>
 
