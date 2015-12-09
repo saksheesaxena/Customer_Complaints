@@ -44,9 +44,9 @@ public class LanguageSelectorActivity extends BaseActivity {
                 .dividerColorRes(R.color.colorPrimary)
                 .title(R.string.language_lang)
                 .items(R.array.app_language)
-                .itemsCallbackSingleChoice(1, new MaterialDialog.ListCallback() {
+                .itemsCallbackSingleChoice(1, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         if (which == 0) {
                             setLocale("hi");
@@ -57,6 +57,7 @@ public class LanguageSelectorActivity extends BaseActivity {
                             editor.putString("language", "en");
                             editor.commit();
                         }
+                        return true;
                     }
                 })
                 .positiveText("Ok")

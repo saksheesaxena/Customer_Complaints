@@ -171,10 +171,11 @@ public class SignUpActivity extends Activity {
             new MaterialDialog.Builder(SignUpActivity.this)
                     .title(R.string.signup_gender)
                     .items(R.array.signup_gender_array)
-                    .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
+                    .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                         @Override
-                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                             inputGender.setText(text);
+                            return true;
                         }
                     })
                     .positiveText("Select")

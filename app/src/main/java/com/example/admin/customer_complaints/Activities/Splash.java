@@ -149,14 +149,13 @@ finally {
                                     .dividerColorRes(R.color.colorPrimary)
                                     .title(R.string.select_ulb)
                                     .items(R.array.ulb_names)
-                                    .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
+                                    .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                         @Override
-                                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                            Intent intent =  new Intent(Splash.this, HomeActivity.class);
-                                            intent.putExtra("SELECTED_ULB",text);
+                                        public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence text) {
+                                            Intent intent = new Intent(Splash.this, HomeActivity.class);
+                                            intent.putExtra("SELECTED_ULB", text);
                                             startActivity(intent);
-                                          //  getDefaultulb(text);
-                                           // inputGender.setText(text);
+                                            return true;
                                         }
                                     })
                                     .positiveText("Ok")

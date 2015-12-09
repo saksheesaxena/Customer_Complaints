@@ -46,8 +46,6 @@ public class MapActivity extends FragmentActivity implements GoogleMap.OnMapClic
     double newlat, newlng;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
